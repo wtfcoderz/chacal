@@ -1,0 +1,15 @@
+sudo: false
+
+services:
+  - docker
+
+script:
+  - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then tag="pr-${TRAVIS_PULL_REQUEST}"; else tag="$TRAVIS_BRANCH"; fi
+  - docker build -t wtfcoderz/chacal:$tag-dev -f Dockerfile.dev .
+  - id=$(docker create wtfcoderz/chacal:$tag-dev)
+  - docker cp $id:/go/src/chacal chacal
+  - docker rm -f $id
+  - docker build -t wtfcoderz/chacal:$tag -f Dockerfile .
+  - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+  - docker push wtfcoderz/chacal:$tag-dev
+  - docker push wtfcoderz/chacal:$tag
