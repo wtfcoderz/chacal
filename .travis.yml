@@ -12,3 +12,4 @@ script:
   - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
   - docker push wtfcoderz/chacal:$TRAVIS_BRANCH-dev
   - docker push wtfcoderz/chacal:$TRAVIS_BRANCH
+  - if [ $TRAVIS_BRANCH = "master" ]; then docker tag wtfcoderz/chacal wtfcoderz/chacal:$TRAVIS_BRANCH && docker push wtfcoderz/chacal; fi
