@@ -1,0 +1,9 @@
+FROM      golang:1.8
+WORKDIR   /go/src
+ENV       CGO_ENABLED=0
+ENV       GO_PATH=/go/src
+RUN       go get github.com/gorilla/mux
+COPY      api /go/src
+RUN       go build -a --installsuffix cgo --ldflags=-s -o chacal
+CMD       ["/go/src/chacal"]
+EXPOSE    80

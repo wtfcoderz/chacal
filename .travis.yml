@@ -1,0 +1,14 @@
+sudo: false
+
+services:
+  - docker
+
+script:
+  - docker build -t wtfcoderz/chacal:$TRAVIS_BRANCH-dev -f Dockerfile.dev .
+  - id=$(docker create wtfcoderz/chacal:$TRAVIS_BRANCH-dev)
+  - docker cp $id:/go/src/chacal chacal
+  - docker rm -f $id
+  - docker build -t wtfcoderz/chacal:$TRAVIS_BRANCH -f Dockerfile .
+  - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+  - docker push wtfcoderz/chacal:$TRAVIS_BRANCH-dev
+  - docker push wtfcoderz/chacal:$TRAVIS_BRANCH
