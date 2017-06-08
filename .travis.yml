@@ -4,12 +4,12 @@ services:
   - docker
 
 script:
-  - docker build -t wtfcoderz/chacal:$TRAVIS_BRANCH-dev -f Dockerfile.dev .
-  - id=$(docker create wtfcoderz/chacal:$TRAVIS_BRANCH-dev)
+  - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then tag="pr-${TRAVIS_PULL_REQUEST}"; else tag="$TRAVIS_BRANCH"; fi
+  - docker build -t wtfcoderz/chacal:$tag-dev -f Dockerfile.dev .
+  - id=$(docker create wtfcoderz/chacal:$tag-dev)
   - docker cp $id:/go/src/chacal chacal
   - docker rm -f $id
-  - docker build -t wtfcoderz/chacal:$TRAVIS_BRANCH -f Dockerfile .
+  - docker build -t wtfcoderz/chacal:$tag -f Dockerfile .
   - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-  - docker push wtfcoderz/chacal:$TRAVIS_BRANCH-dev
-  - docker push wtfcoderz/chacal:$TRAVIS_BRANCH
-  - if [ $TRAVIS_BRANCH = "master" ]; then docker tag wtfcoderz/chacal wtfcoderz/chacal:$TRAVIS_BRANCH && docker push wtfcoderz/chacal; fi
+  - docker push wtfcoderz/chacal:$tag-dev
+  - docker push wtfcoderz/chacal:$tag
