@@ -11,7 +11,7 @@ It has
 - Date of submission
 - A category / sub-categories
 - A position
-- A indicator to tell if element is moving or not (and how fast !)
+- A indicator to tell if item is moving or not (and how fast !)
 - A list of key/value description
 
 Ex : a car
