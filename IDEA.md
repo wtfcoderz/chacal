@@ -2,7 +2,30 @@
 
 Radar  
 Collaborative  
-Collect relevant descriptions and then generate statistics
+Collect relevant descriptions and then generate statistics  
+
+***
+## Spotted Items
+A spotted item is what a person want to share with others  
+It has
+- Date of submission
+- A category / sub-categories
+- A position
+- A indicator to tell if element is moving or not (and how fast !)
+- A list of key/value description
+
+Ex : a car
+- Category : Vehicle / Car
+- Position (GPS)
+- 70 km/h
+- Brand : Ferrari / Color : red / etc...
+
+***
+## Match Algorithm
+A match algorithm have to be coded  
+Role : Trying to match multiple spotted items to be unique item, based on collected data  
+Compare description attribute  
+Compare positions related to dates of submission and moving indicator
 
 ***
 ## API (Go)
