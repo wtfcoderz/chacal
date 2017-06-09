@@ -24,8 +24,8 @@ Ex : a car
 ## Match Algorithm
 A match algorithm have to be coded  
 Role : Trying to match multiple spotted items to be unique item, based on collected data  
-Compare description attribute  
-Compare positions related to dates of submission and moving indicator
+Compare description attributes  
+Compare related positions to dates of submission and moving indicator
 
 ***
 ## API (Go)
