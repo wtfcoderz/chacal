@@ -1,0 +1,10 @@
+version: "3"
+services:
+  chacal:
+    image: wtfcoderz/chacal
+    ports:
+      - "1664:80"
+  chacal-bdd:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: "my$$ecurePas$$w0rd"
